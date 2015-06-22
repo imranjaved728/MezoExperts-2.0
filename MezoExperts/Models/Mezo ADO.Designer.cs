@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'F:\Imran Jawaid\MezoExperts\MezoExperts\Models\Mezo ADO.edmx'. 
+﻿// T4 code generation is enabled for model 'F:\Imran Jawaid\MezoExperts-2.0\MezoExperts\Models\Mezo ADO.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

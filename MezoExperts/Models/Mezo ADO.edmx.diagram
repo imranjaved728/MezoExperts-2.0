@@ -5,8 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6ac232fe147647bfa0da84f3a889de5f" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.Client" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Expert" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Client" Width="1.5" PointX="0.625" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Expert" Width="1.5" PointX="5.125" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.User" Width="1.5" PointX="2.75" PointY="1.75" />
+        <AssociationConnector Association="Model.FK__Client__Email__49C3F6B7" />
+        <AssociationConnector Association="Model.FK__Expert__Email__4AB81AF0" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
