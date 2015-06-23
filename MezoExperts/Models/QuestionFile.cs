@@ -12,9 +12,12 @@ namespace MezoExperts.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Expert
+    public partial class QuestionFile
     {
         public int Id { get; set; }
-        public string Email { get; set; }
+        public int QuestionId { get; set; }
+        public string Path { get; set; }
+    
+        public virtual Question Question { get; set; }
     }
 }

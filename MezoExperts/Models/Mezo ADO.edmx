@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
@@ -19,52 +19,61 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="Question">
           <Key>
-            <PropertyRef Name="Email" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="UserType" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostedBy" Type="int" Nullable="false" />
+          <Property Name="Details" Type="varchar(max)" />
         </EntityType>
-        <Association Name="FK__Client__Email__49C3F6B7">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Client" Type="Self.Client" Multiplicity="*" />
+        <EntityType Name="QuestionFiles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionId" Type="int" Nullable="false" />
+          <Property Name="Path" Type="varchar(max)" />
+        </EntityType>
+        <Association Name="FK__Question__Posted__5CD6CB2B">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Email" />
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Client">
-              <PropertyRef Name="Email" />
+            <Dependent Role="Question">
+              <PropertyRef Name="PostedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Expert__Email__4AB81AF0">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Expert" Type="Self.Expert" Multiplicity="*" />
+        <Association Name="FK__QuestionF__Quest__5FB337D6">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="QuestionFiles" Type="Self.QuestionFiles" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Email" />
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Expert">
-              <PropertyRef Name="Email" />
+            <Dependent Role="QuestionFiles">
+              <PropertyRef Name="QuestionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Expert" EntityType="Self.Expert" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Client__Email__49C3F6B7" Association="Self.FK__Client__Email__49C3F6B7">
-            <End Role="User" EntitySet="User" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionFiles" EntityType="Self.QuestionFiles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Question__Posted__5CD6CB2B" Association="Self.FK__Question__Posted__5CD6CB2B">
             <End Role="Client" EntitySet="Client" />
+            <End Role="Question" EntitySet="Question" />
           </AssociationSet>
-          <AssociationSet Name="FK__Expert__Email__4AB81AF0" Association="Self.FK__Expert__Email__4AB81AF0">
-            <End Role="User" EntitySet="User" />
-            <End Role="Expert" EntitySet="Expert" />
+          <AssociationSet Name="FK__QuestionF__Quest__5FB337D6" Association="Self.FK__QuestionF__Quest__5FB337D6">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionFiles" EntitySet="QuestionFiles" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -74,7 +83,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Client__Email__49C3F6B7" FromRole="Client" ToRole="User" />
+          <NavigationProperty Name="Questions" Relationship="Model.FK__Question__Posted__5CD6CB2B" FromRole="Client" ToRole="Question" />
         </EntityType>
         <EntityType Name="Expert">
           <Key>
@@ -82,54 +91,64 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK__Expert__Email__4AB81AF0" FromRole="Expert" ToRole="User" />
         </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Email" />
-          </Key>
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Clients" Relationship="Self.FK__Client__Email__49C3F6B7" FromRole="User" ToRole="Client" />
-          <NavigationProperty Name="Experts" Relationship="Self.FK__Expert__Email__4AB81AF0" FromRole="User" ToRole="Expert" />
-        </EntityType>
-        <Association Name="FK__Client__Email__49C3F6B7">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Client" Type="Self.Client" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Email" />
-            </Principal>
-            <Dependent Role="Client">
-              <PropertyRef Name="Email" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Expert__Email__4AB81AF0">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Expert" Type="Self.Expert" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Email" />
-            </Principal>
-            <Dependent Role="Expert">
-              <PropertyRef Name="Email" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Clients" EntityType="Self.Client" />
           <EntitySet Name="Experts" EntityType="Self.Expert" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK__Client__Email__49C3F6B7" Association="Self.FK__Client__Email__49C3F6B7">
-            <End Role="User" EntitySet="Users" />
+          <EntitySet Name="Questions" EntityType="Model.Question" />
+          <EntitySet Name="QuestionFiles" EntityType="Model.QuestionFile" />
+          <AssociationSet Name="FK__Question__Posted__5CD6CB2B" Association="Model.FK__Question__Posted__5CD6CB2B">
             <End Role="Client" EntitySet="Clients" />
+            <End Role="Question" EntitySet="Questions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Expert__Email__4AB81AF0" Association="Self.FK__Expert__Email__4AB81AF0">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Expert" EntitySet="Experts" />
+          <AssociationSet Name="FK__QuestionF__Quest__5FB337D6" Association="Model.FK__QuestionF__Quest__5FB337D6">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="QuestionFile" EntitySet="QuestionFiles" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostedBy" Type="Int32" Nullable="false" />
+          <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Client" Relationship="Model.FK__Question__Posted__5CD6CB2B" FromRole="Question" ToRole="Client" />
+          <NavigationProperty Name="QuestionFiles" Relationship="Model.FK__QuestionF__Quest__5FB337D6" FromRole="Question" ToRole="QuestionFile" />
+        </EntityType>
+        <EntityType Name="QuestionFile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionId" Type="Int32" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Question" Relationship="Model.FK__QuestionF__Quest__5FB337D6" FromRole="QuestionFile" ToRole="Question" />
+        </EntityType>
+        <Association Name="FK__Question__Posted__5CD6CB2B">
+          <End Type="Model.Client" Role="Client" Multiplicity="1" />
+          <End Type="Model.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="PostedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuestionF__Quest__5FB337D6">
+          <End Type="Model.Question" Role="Question" Multiplicity="1" />
+          <End Type="Model.QuestionFile" Role="QuestionFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="QuestionFile">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -152,11 +171,21 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="Model.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="Model.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionFiles">
+            <EntityTypeMapping TypeName="Model.QuestionFile">
+              <MappingFragment StoreEntitySet="QuestionFiles">
+                <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
