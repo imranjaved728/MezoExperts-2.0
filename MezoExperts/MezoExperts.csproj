@@ -225,6 +225,7 @@
     <Content Include="App_Data\aspnet-MezoExperts-20150621211810_log.ldf">
       <DependentUpon>aspnet-MezoExperts-20150621211810.mdf</DependentUpon>
     </Content>
+    <Content Include="Images\MezoImages\bluebacksmall.png" />
     <Content Include="Theme\bootstrap-3.3.4-dist\css\bootstrap-theme.css" />
     <Content Include="Theme\bootstrap-3.3.4-dist\css\bootstrap-theme.min.css" />
     <Content Include="Theme\bootstrap-3.3.4-dist\css\bootstrap.css" />
