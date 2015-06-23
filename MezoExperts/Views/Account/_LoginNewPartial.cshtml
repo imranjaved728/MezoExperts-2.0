@@ -5,18 +5,12 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
 
-    <div class="modal fade" id="loginNewModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container text-center">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
+    <div class="modal fade" id="loginNewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
                             <h2>Login</h2>
                             <hr class="star-primary">
                             <p>Fill the following details to login to your account.</p>
@@ -52,10 +46,14 @@
                         </div>
                         <p class="error">@TempData["LoginError"]</p>
                     </div>
+
+
                 </div>
             </div>
+
         </div>
     </div>
+
 }
 
         
