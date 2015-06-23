@@ -632,6 +632,7 @@
     <Content Include="Views\Account\_RegisterClientPartial.cshtml" />
     <Content Include="Views\Account\_RegisterExpertPartial.cshtml" />
     <Content Include="Views\Home\_Navbar.cshtml" />
+    <Content Include="Views\Home\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
