@@ -1,0 +1,13 @@
+﻿.QuestionBox {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9) none repeat scroll 0px 0px padding-box;
+            z-index: 5;
+            padding: 20px 40px 10px;
+            border-radius: 15px;
+            border: 8px solid rgba(0, 0, 0, 0.3);
+}
+      
+.modal-dialog
+{
+  margin:200px auto;
+}
