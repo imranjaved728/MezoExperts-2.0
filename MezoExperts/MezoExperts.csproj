@@ -631,6 +631,7 @@
     <Content Include="Views\Account\_LoginNewPartial.cshtml" />
     <Content Include="Views\Account\_RegisterClientPartial.cshtml" />
     <Content Include="Views\Account\_RegisterExpertPartial.cshtml" />
+    <Content Include="Views\Home\_Navbar.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -1,0 +1,98 @@
+﻿@{
+    if (!WebSecurity.IsAuthenticated)
+    {
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#page-top">Mezo Experts</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+
+                        <li class="dropdown">
+                            <a id="dd1" class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a class="CloseNavBarOnClick" href="#registerClientModal" data-toggle="modal">SignUp as Client</a></li>
+                                <li><a class="CloseNavBarOnClick" href="#registerExpertModal" data-toggle="modal">SignUp as Expert</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="CloseNavBarOnClick" href="#loginNewModal" data-toggle="modal"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                        </li>
+
+                        <li class="page-scroll">
+                            <a href="#contact" class="CloseNavBarOnClick">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    }
+    else
+    {
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#page-top">Mezo Experts</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+
+                        @{if (Roles.IsUserInRole("client"))
+                        {
+                            <li>
+                                <a href="#"><span class="glyphicon glyphicon-question-sign"></span> Post Question</a>
+                            </li>
+                        }
+                          else if (Roles.IsUserInRole("expert"))
+                        {
+                            <li>
+                                <a href="#"><span class="glyphicon glyphicon-question-sign"></span> View Posted Questions</a>
+                            </li>
+                        }
+                        }
+                        <li>
+                            <a href="#" onclick="document.getElementById('LogoutForm').submit();"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                        </li>
+
+                        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "LogoutForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                        }
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+    }
+}
