@@ -190,6 +190,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Client.cs">
+      <DependentUpon>Mezo ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Expert.cs">
+      <DependentUpon>Mezo ADO.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Mezo ADO.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -204,6 +210,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Mezo ADO.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>Mezo ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -509,6 +518,16 @@
     <Content Include="bootstrap-3.3.4-dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="bootstrap-3.3.4-dist\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="bootstrap-3.3.4-dist\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="ckeditor\CHANGES.md" />
+    <Content Include="ckeditor\LICENSE.md" />
+    <Content Include="ckeditor\plugins\scayt\LICENSE.md" />
+    <Content Include="ckeditor\plugins\scayt\README.md" />
+    <Content Include="ckeditor\plugins\wsc\LICENSE.md" />
+    <Content Include="ckeditor\plugins\wsc\README.md" />
+    <Content Include="ckeditor\README.md" />
+    <Content Include="ckeditor\samples\assets\posteddata.php" />
+    <Content Include="ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
+    <Content Include="ckeditor\samples\sample_posteddata.php" />
     <EntityDeploy Include="Models\Mezo ADO.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Mezo ADO.Designer.cs</LastGenOutput>
@@ -526,16 +545,6 @@
       <DependentUpon>Mezo ADO.edmx</DependentUpon>
       <LastGenOutput>Mezo ADO.cs</LastGenOutput>
     </Content>
-    <Content Include="ckeditor\CHANGES.md" />
-    <Content Include="ckeditor\LICENSE.md" />
-    <Content Include="ckeditor\plugins\scayt\LICENSE.md" />
-    <Content Include="ckeditor\plugins\scayt\README.md" />
-    <Content Include="ckeditor\plugins\wsc\LICENSE.md" />
-    <Content Include="ckeditor\plugins\wsc\README.md" />
-    <Content Include="ckeditor\README.md" />
-    <Content Include="ckeditor\samples\assets\posteddata.php" />
-    <Content Include="ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
-    <Content Include="ckeditor\samples\sample_posteddata.php" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="MezoImages\homeback.jpg" />
     <Content Include="Scripts\jquery-1.8.2.js" />

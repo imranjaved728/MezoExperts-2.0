@@ -35,7 +35,7 @@ namespace MezoExperts.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
-            MezoEntities db = new MezoEntities();
+            DBEntities db = new DBEntities();
             if (ModelState.IsValid && db.Clients.Where(c => c.Email == model.UserName).Count() == 0)
             {
                 TempData["LoginError"] = "There is no Client Account associated with this email address.";
@@ -61,7 +61,7 @@ namespace MezoExperts.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LoginExpert(LoginModel model, string returnUrl)
         {
-            MezoEntities db = new MezoEntities();
+            DBEntities db = new DBEntities();
             if (ModelState.IsValid && db.Experts.Where(e => e.Email == model.UserName).Count() == 0)
             {
                 TempData["ExpertLoginError"] = "There is no Expert Account associated with this email address.";
@@ -114,9 +114,8 @@ namespace MezoExperts.Controllers
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
-                MezoEntities db = new MezoEntities();
-                if (db.Clients.Where(c => c.Email == model.UserName).Count() > 0
-                    || db.Experts.Where(e => e.Email == model.UserName).Count() > 0)
+                DBEntities db = new DBEntities();
+                if (db.Users.Where(u => u.Email == model.UserName).Count() > 0)
                 {
                     TempData["RegisterError"] = "There is already an account associated with the email address you entered.";
                     return RedirectToAction("Index", "Home");
@@ -125,10 +124,18 @@ namespace MezoExperts.Controllers
                 try
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+                    
+                    User u = new User();
+                    u.Email = model.UserName;
+                    u.UserType="client";
+                    db.Users.Add(u);
+                    db.SaveChanges();
+
                     Client c = new Client();
                     c.Email = model.UserName;
                     db.Clients.Add(c);
                     db.SaveChanges();
+                    
                     WebSecurity.Login(model.UserName, model.Password);
                     return RedirectToAction("Index", "Home");
                 }
@@ -139,7 +146,7 @@ namespace MezoExperts.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            TempData["RegisterError"] = "There is already an account associated with the email address you entered.";
+            TempData["ExpertRegisterError"] = "Please enter a valid email address and password.";
             return RedirectToAction("Index", "Home");
         }
 
@@ -152,9 +159,8 @@ namespace MezoExperts.Controllers
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
-                MezoEntities db = new MezoEntities();
-                if (db.Clients.Where(c => c.Email == model.UserName).Count() > 0
-                    || db.Experts.Where(e => e.Email == model.UserName).Count() > 0)
+                DBEntities db = new DBEntities();
+                if (db.Users.Where(u => u.Email == model.UserName).Count() > 0)
                 {
                     TempData["ExpertRegisterError"] = "There is already an account associated with the email address you entered.";
                     return RedirectToAction("Index", "Home");
@@ -163,6 +169,13 @@ namespace MezoExperts.Controllers
                 try
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+
+                    User u = new User();
+                    u.Email = model.UserName;
+                    u.UserType = "expert";
+                    db.Users.Add(u);
+                    db.SaveChanges();
+
                     Expert e = new Expert();
                     e.Email = model.UserName;
                     db.Experts.Add(e);
@@ -177,7 +190,7 @@ namespace MezoExperts.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            TempData["ExpertRegisterError"] = "There is already an account associated with the email address you entered.";
+            TempData["ExpertRegisterError"] = "Please enter a valid email address and password.";
             return RedirectToAction("Index", "Home");
         }
 
