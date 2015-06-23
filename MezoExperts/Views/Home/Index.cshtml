@@ -1,4 +1,4 @@
-﻿@model MezoExperts.Models.HomeModel
+﻿
 @{
     Layout = null;
 }
@@ -49,7 +49,7 @@
 
 <body id="page-top" class="index">
 
-    @Html.Partial("~/Views/Home/_Navbar.cshtml")
+    @Html.Partial("~/Views/Home/_Navbar.cshtml",new MezoExperts.Models.HomeModel())
 
     <!-- Header -->
     <header style="background-image: url('../../Images/MezoImages/homeback.jpg'); ">
@@ -109,12 +109,7 @@
         </a>
     </div>
 
-    <!-- Modals -->
-    @Html.Partial("~/Views/Account/_LoginNewPartial.cshtml", Model.Login)
-
-    @Html.Partial("~/Views/Account/_RegisterClientPartial.cshtml", Model.Register)
-
-    @Html.Partial("~/Views/Account/_RegisterExpertPartial.cshtml", Model.Register)
+    
 
 
 

@@ -12,8 +12,7 @@ namespace MezoExperts.Controllers
         public ActionResult Index()
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-            HomeModel model = new HomeModel();
-            return View(model);
+            return View();
         }
 
         public ActionResult About()

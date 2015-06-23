@@ -16,9 +16,9 @@ namespace MezoExperts.Controllers
         // GET: /Question/
         [HttpGet]
         [AllowAnonymous]
-        public ActionResult Post(string q="")
+        public ActionResult Post()
         {
-            return View(new HomeModel());
+            return View();
         }
 
     }

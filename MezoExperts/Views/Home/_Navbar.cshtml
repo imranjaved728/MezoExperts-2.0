@@ -1,4 +1,5 @@
-﻿@{
+﻿@model MezoExperts.Models.HomeModel
+@{
     if (!WebSecurity.IsAuthenticated)
     {
         <!-- Navigation -->
@@ -43,6 +44,12 @@
             </div>
             <!-- /.container-fluid -->
         </nav>
+    <!-- Modals -->
+    @Html.Partial("~/Views/Account/_LoginNewPartial.cshtml", Model.Login)
+
+    @Html.Partial("~/Views/Account/_RegisterClientPartial.cshtml", Model.Register)
+
+    @Html.Partial("~/Views/Account/_RegisterExpertPartial.cshtml", Model.Register)
     }
     else
     {
