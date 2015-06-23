@@ -36,7 +36,7 @@ namespace MezoExperts.Controllers
         public ActionResult Login(LoginModel model, string returnUrl)
         {
             DBEntities db = new DBEntities();
-            if (ModelState.IsValid && db.Clients.Where(c => c.Email == model.UserName).Count() == 0)
+            if (ModelState.IsValid && db.Users.Where(u => u.Email == model.UserName).Count() == 0)
             {
                 TempData["LoginError"] = "There is no Client Account associated with this email address.";
                 TempData["Email"] = model.UserName;
@@ -45,7 +45,7 @@ namespace MezoExperts.Controllers
 
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                Session["Type"] = "Client";
+                Session["Type"] = db.Users.Where(u => u.Email == model.UserName).ElementAt(0).UserType.ToString();
                 return RedirectToLocal(returnUrl);
             }
             
@@ -53,32 +53,6 @@ namespace MezoExperts.Controllers
             //ModelState.AddModelError("LoginError", "The user name or password provided is incorrect.");
             TempData["LoginError"] = "The email address or password provided is incorrect.";
             TempData["Email"]=model.UserName;
-            return RedirectToAction("Index", "Home");
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public ActionResult LoginExpert(LoginModel model, string returnUrl)
-        {
-            DBEntities db = new DBEntities();
-            if (ModelState.IsValid && db.Experts.Where(e => e.Email == model.UserName).Count() == 0)
-            {
-                TempData["ExpertLoginError"] = "There is no Expert Account associated with this email address.";
-                TempData["Email"] = model.UserName;
-                return RedirectToAction("Index", "Home");
-            }
-
-            if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
-            {
-                Session["Type"] = "Expert";
-                return RedirectToLocal(returnUrl);
-            }
-
-            // If we got this far, something failed, redisplay form
-            //ModelState.AddModelError("LoginError", "The user name or password provided is incorrect.");
-            TempData["ExpertLoginError"] = "The email address or password provided is incorrect.";
-            TempData["Email"] = model.UserName;
             return RedirectToAction("Index", "Home");
         }
 

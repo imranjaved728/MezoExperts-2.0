@@ -78,13 +78,10 @@
                         </ul>
                     </li>
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-log-in"></span> Login<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a class="CloseNavBarOnClick" href="#loginClientModal" data-toggle="modal">Login as Client</a></li>
-                            <li><a class="CloseNavBarOnClick" href="#loginExpertModal" data-toggle="modal">Login as Expert</a></li>
-                        </ul>
+                    <li>
+                        <a class="CloseNavBarOnClick" href="#loginNewModal" data-toggle="modal"><span class="glyphicon glyphicon-log-in"></span> Login</a>
                     </li>
+
                     <li class="page-scroll">
                         <a href="#contact" class="CloseNavBarOnClick">Contact</a>
                     </li>
@@ -96,7 +93,7 @@
     </nav>
 
     <!-- Header -->
-    <header style="background-image: url('../../MezoImages/homeback.jpg');">
+    <header style="background-image: url('../../Images/MezoImages/homeback.jpg'); ">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -199,11 +196,9 @@
     </div>
 
     <!-- Modals -->
-    @Html.Partial("~/Views/Account/_LoginClientPartial.cshtml", Model.Login)
+    @Html.Partial("~/Views/Account/_LoginNewPartial.cshtml", Model.Login)
 
     @Html.Partial("~/Views/Account/_RegisterClientPartial.cshtml", Model.Register)
-
-    @Html.Partial("~/Views/Account/_LoginExpertPartial.cshtml", Model.Login)
 
     @Html.Partial("~/Views/Account/_RegisterExpertPartial.cshtml", Model.Register)
 
