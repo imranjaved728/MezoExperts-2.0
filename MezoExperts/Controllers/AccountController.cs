@@ -37,7 +37,12 @@ namespace MezoExperts.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
-                return RedirectToLocal(returnUrl);
+                var role = Roles.GetRolesForUser(model.UserName).First();
+                if (role.CompareTo("expert")==0)
+                    return RedirectToAction("Index", "Expert");
+                else
+                    return RedirectToLocal(returnUrl);
+
             }
             
             // If we got this far, something failed, redisplay form

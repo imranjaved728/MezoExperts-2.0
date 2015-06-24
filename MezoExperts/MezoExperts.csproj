@@ -184,6 +184,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ExpertController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -560,7 +561,9 @@
     <Content Include="Theme\js\freelancer.js" />
     <Content Include="Theme\js\jqBootstrapValidation.js" />
     <Content Include="Theme\js\jquery.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -643,6 +646,7 @@
     <Content Include="Views\Home\_Navbar.cshtml" />
     <Content Include="Views\Home\_Footer.cshtml" />
     <Content Include="Views\Question\Post.cshtml" />
+    <Content Include="Views\Expert\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
