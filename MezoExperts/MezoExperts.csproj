@@ -229,18 +229,6 @@
     <Content Include="App_Data\aspnet-MezoExperts-20150621211810_log.ldf">
       <DependentUpon>aspnet-MezoExperts-20150621211810.mdf</DependentUpon>
     </Content>
-    <Content Include="Images\MezoImages\bluebacksmall.png" />
-    <Content Include="Theme\bootstrap-3.3.4-dist\css\bootstrap-theme.css" />
-    <Content Include="Theme\bootstrap-3.3.4-dist\css\bootstrap-theme.min.css" />
-    <Content Include="Theme\bootstrap-3.3.4-dist\css\bootstrap.css" />
-    <Content Include="Theme\bootstrap-3.3.4-dist\css\bootstrap.min.css" />
-    <Content Include="Theme\bootstrap-3.3.4-dist\css\cyborg.bootstrap.min.css" />
-    <Content Include="Theme\bootstrap-3.3.4-dist\css\darkly.bootstrap.min.css" />
-    <Content Include="Theme\bootstrap-3.3.4-dist\css\flatly.bootstrap.min.css" />
-    <Content Include="Theme\bootstrap-3.3.4-dist\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Theme\bootstrap-3.3.4-dist\js\bootstrap.js" />
-    <Content Include="Theme\bootstrap-3.3.4-dist\js\bootstrap.min.js" />
-    <Content Include="Theme\bootstrap-3.3.4-dist\js\npm.js" />
     <Content Include="ckeditor\adapters\jquery.js" />
     <Content Include="ckeditor\build-config.js" />
     <Content Include="ckeditor\ckeditor.js" />
@@ -306,9 +294,6 @@
     <Content Include="ckeditor\plugins\a11yhelp\dialogs\lang\zh-cn.js" />
     <Content Include="ckeditor\plugins\a11yhelp\dialogs\lang\zh.js" />
     <Content Include="ckeditor\plugins\a11yhelp\dialogs\lang\_translationstatus.txt" />
-    <Content Include="ckeditor\plugins\about\dialogs\about.js" />
-    <Content Include="ckeditor\plugins\about\dialogs\hidpi\logo_ckeditor.png" />
-    <Content Include="ckeditor\plugins\about\dialogs\logo_ckeditor.png" />
     <Content Include="ckeditor\plugins\clipboard\dialogs\paste.js" />
     <Content Include="ckeditor\plugins\dialog\dialogDefinition.js" />
     <Content Include="ckeditor\plugins\icons.png" />
@@ -431,6 +416,18 @@
     <Content Include="ckeditor\skins\office2013\images\lock.png" />
     <Content Include="ckeditor\skins\office2013\images\refresh.png" />
     <Content Include="ckeditor\styles.js" />
+    <Content Include="Images\MezoImages\bluebacksmall.png" />
+    <Content Include="Theme\bootstrap-3.3.4-dist\css\bootstrap-theme.css" />
+    <Content Include="Theme\bootstrap-3.3.4-dist\css\bootstrap-theme.min.css" />
+    <Content Include="Theme\bootstrap-3.3.4-dist\css\bootstrap.css" />
+    <Content Include="Theme\bootstrap-3.3.4-dist\css\bootstrap.min.css" />
+    <Content Include="Theme\bootstrap-3.3.4-dist\css\cyborg.bootstrap.min.css" />
+    <Content Include="Theme\bootstrap-3.3.4-dist\css\darkly.bootstrap.min.css" />
+    <Content Include="Theme\bootstrap-3.3.4-dist\css\flatly.bootstrap.min.css" />
+    <Content Include="Theme\bootstrap-3.3.4-dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Theme\bootstrap-3.3.4-dist\js\bootstrap.js" />
+    <Content Include="Theme\bootstrap-3.3.4-dist\js\bootstrap.min.js" />
+    <Content Include="Theme\bootstrap-3.3.4-dist\js\npm.js" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -493,16 +490,6 @@
     <Content Include="Theme\bootstrap-3.3.4-dist\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Theme\bootstrap-3.3.4-dist\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Theme\bootstrap-3.3.4-dist\fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="ckeditor\CHANGES.md" />
-    <Content Include="ckeditor\LICENSE.md" />
-    <Content Include="ckeditor\plugins\scayt\LICENSE.md" />
-    <Content Include="ckeditor\plugins\scayt\README.md" />
-    <Content Include="ckeditor\plugins\wsc\LICENSE.md" />
-    <Content Include="ckeditor\plugins\wsc\README.md" />
-    <Content Include="ckeditor\README.md" />
-    <Content Include="ckeditor\samples\assets\posteddata.php" />
-    <Content Include="ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
-    <Content Include="ckeditor\samples\sample_posteddata.php" />
     <EntityDeploy Include="Models\Mezo ADO.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Mezo ADO.Designer.cs</LastGenOutput>
@@ -520,6 +507,16 @@
       <DependentUpon>Mezo ADO.edmx</DependentUpon>
       <LastGenOutput>Mezo ADO.cs</LastGenOutput>
     </Content>
+    <Content Include="ckeditor\CHANGES.md" />
+    <Content Include="ckeditor\LICENSE.md" />
+    <Content Include="ckeditor\plugins\scayt\LICENSE.md" />
+    <Content Include="ckeditor\plugins\scayt\README.md" />
+    <Content Include="ckeditor\plugins\wsc\LICENSE.md" />
+    <Content Include="ckeditor\plugins\wsc\README.md" />
+    <Content Include="ckeditor\README.md" />
+    <Content Include="ckeditor\samples\assets\posteddata.php" />
+    <Content Include="ckeditor\samples\plugins\htmlwriter\assets\outputforflash\outputforflash.fla" />
+    <Content Include="ckeditor\samples\sample_posteddata.php" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\MezoImages\homeback.jpg" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -645,8 +642,12 @@
     <Content Include="Views\Account\_RegisterExpertPartial.cshtml" />
     <Content Include="Views\Home\_Navbar.cshtml" />
     <Content Include="Views\Home\_Footer.cshtml" />
-    <Content Include="Views\Question\Post.cshtml" />
     <Content Include="Views\Expert\Profile.cshtml" />
+    <Content Include="Views\Question\Index.cshtml" />
+    <Content Include="Views\Question\Details.cshtml" />
+    <Content Include="Views\Question\Create.cshtml" />
+    <Content Include="Views\Question\Edit.cshtml" />
+    <Content Include="Views\Question\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

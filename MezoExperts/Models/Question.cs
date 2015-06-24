@@ -22,11 +22,11 @@ namespace MezoExperts.Models
         public int Id { get; set; }
         public int PostedBy { get; set; }
         public string Details { get; set; }
-        public Nullable<int> CategoryId { get; set; }
+        public string CategoryId { get; set; }
         public string Title { get; set; }
     
+        public virtual Category Category { get; set; }
         public virtual Client Client { get; set; }
         public virtual ICollection<QuestionFile> QuestionFiles { get; set; }
-        public virtual Category Category { get; set; }
     }
 }
