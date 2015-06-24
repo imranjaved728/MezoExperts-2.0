@@ -19,8 +19,7 @@ namespace MezoExperts.Models
             this.Questions = new HashSet<Question>();
         }
     
-        public int Id { get; set; }
-        public string CategoryName { get; set; }
+        public string Id { get; set; }
     
         public virtual ICollection<Question> Questions { get; set; }
     }

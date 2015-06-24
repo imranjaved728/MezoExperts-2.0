@@ -5,16 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="9b76ba1ef15a48ed99479e778280ec05" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.Client" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Expert" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Question" Width="1.5" PointX="2.625" PointY="0.5" />
-        <EntityTypeShape EntityType="Model.QuestionFile" Width="1.5" PointX="5.25" PointY="0.5" />
-        <AssociationConnector Association="Model.FK__Question__Posted__5CD6CB2B" />
-        <AssociationConnector Association="Model.FK__QuestionF__Quest__5FB337D6" />
-        <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="0.5" PointY="2.875" />
-        <AssociationConnector Association="Model.FK__Question__Catego__70DDC3D8" />
-        <EntityTypeShape EntityType="Model.webpages_Membership" Width="1.5" PointX="0.75" PointY="6.75" />
-        <EntityTypeShape EntityType="Model.webpages_OAuthMembership" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Model.Client" PointX="0.5" PointY="0.625" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Expert" PointX="2.75" PointY="0.5" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.QuestionFile" PointX="3" PointY="3" Width="1.5" />
+        <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="4.875" PointY="1.75" />
+        <EntityTypeShape EntityType="Model.Question" Width="1.5" PointX="0.5" PointY="2.875" />
+        <AssociationConnector Association="Model.FK__Question__Catego__531856C7" />
+        <AssociationConnector Association="Model.FK__Question__Posted__5224328E" />
+        <AssociationConnector Association="Model.FK__QuestionF__Quest__51300E55" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

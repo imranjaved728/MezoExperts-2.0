@@ -27,10 +27,8 @@ namespace MezoExperts.Models
     
         public DbSet<Client> Clients { get; set; }
         public DbSet<Expert> Experts { get; set; }
-        public DbSet<Question> Questions { get; set; }
         public DbSet<QuestionFile> QuestionFiles { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<webpages_Membership> webpages_Membership { get; set; }
-        public DbSet<webpages_OAuthMembership> webpages_OAuthMembership { get; set; }
+        public DbSet<Question> Questions { get; set; }
     }
 }
