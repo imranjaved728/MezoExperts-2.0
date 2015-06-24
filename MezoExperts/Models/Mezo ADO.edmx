@@ -34,6 +34,7 @@
           <Property Name="PostedBy" Type="int" Nullable="false" />
           <Property Name="Details" Type="varchar(max)" />
           <Property Name="CategoryId" Type="int" />
+          <Property Name="Title" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="QuestionFiles">
           <Key>
@@ -43,8 +44,10 @@
           <Property Name="QuestionId" Type="int" Nullable="false" />
           <Property Name="Path" Type="varchar(max)" />
         </EntityType>
-        <Association Name="FK__Question__Catego__70DDC3D8">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+        <Association Name="FK__Question__Catego__3A4CA8FD">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Question" Type="Self.Question" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
@@ -55,8 +58,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Question__Posted__5CD6CB2B">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+        <Association Name="FK__Question__Posted__02084FDA">
+          <End Role="Client" Type="Self.Client" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Question" Type="Self.Question" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Client">
@@ -67,8 +72,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__QuestionF__Quest__5FB337D6">
-          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+        <Association Name="FK__QuestionF__Quest__01142BA1">
+          <End Role="Question" Type="Self.Question" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="QuestionFiles" Type="Self.QuestionFiles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Question">
@@ -85,15 +92,15 @@
           <EntitySet Name="Expert" EntityType="Self.Expert" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionFiles" EntityType="Self.QuestionFiles" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Question__Catego__70DDC3D8" Association="Self.FK__Question__Catego__70DDC3D8">
+          <AssociationSet Name="FK__Question__Catego__3A4CA8FD" Association="Self.FK__Question__Catego__3A4CA8FD">
             <End Role="Category" EntitySet="Category" />
             <End Role="Question" EntitySet="Question" />
           </AssociationSet>
-          <AssociationSet Name="FK__Question__Posted__5CD6CB2B" Association="Self.FK__Question__Posted__5CD6CB2B">
+          <AssociationSet Name="FK__Question__Posted__02084FDA" Association="Self.FK__Question__Posted__02084FDA">
             <End Role="Client" EntitySet="Client" />
             <End Role="Question" EntitySet="Question" />
           </AssociationSet>
-          <AssociationSet Name="FK__QuestionF__Quest__5FB337D6" Association="Self.FK__QuestionF__Quest__5FB337D6">
+          <AssociationSet Name="FK__QuestionF__Quest__01142BA1" Association="Self.FK__QuestionF__Quest__01142BA1">
             <End Role="Question" EntitySet="Question" />
             <End Role="QuestionFiles" EntitySet="QuestionFiles" />
           </AssociationSet>
@@ -147,6 +154,7 @@
           <NavigationProperty Name="QuestionFiles" Relationship="Model.FK__QuestionF__Quest__5FB337D6" FromRole="Question" ToRole="QuestionFile" />
           <Property Name="CategoryId" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Model.FK__Question__Catego__70DDC3D8" FromRole="Question" ToRole="Category" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="QuestionFile">
           <Key>
@@ -226,6 +234,7 @@
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="Model.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Details" ColumnName="Details" />
                 <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
