@@ -12,20 +12,16 @@ namespace MezoExperts.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Question
+    public partial class Category
     {
-        public Question()
+        public Category()
         {
-            this.QuestionFiles = new HashSet<QuestionFile>();
+            this.Questions = new HashSet<Question>();
         }
     
         public int Id { get; set; }
-        public int PostedBy { get; set; }
-        public string Details { get; set; }
-        public Nullable<int> CategoryId { get; set; }
+        public string CategoryName { get; set; }
     
-        public virtual Client Client { get; set; }
-        public virtual ICollection<QuestionFile> QuestionFiles { get; set; }
-        public virtual Category Category { get; set; }
+        public virtual ICollection<Question> Questions { get; set; }
     }
 }

@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
         <EntityType Name="Client">
           <Key>
             <PropertyRef Name="Id" />
@@ -26,6 +33,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PostedBy" Type="int" Nullable="false" />
           <Property Name="Details" Type="varchar(max)" />
+          <Property Name="CategoryId" Type="int" />
         </EntityType>
         <EntityType Name="QuestionFiles">
           <Key>
@@ -35,6 +43,18 @@
           <Property Name="QuestionId" Type="int" Nullable="false" />
           <Property Name="Path" Type="varchar(max)" />
         </EntityType>
+        <Association Name="FK__Question__Catego__70DDC3D8">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Question__Posted__5CD6CB2B">
           <End Role="Client" Type="Self.Client" Multiplicity="1" />
           <End Role="Question" Type="Self.Question" Multiplicity="*" />
@@ -60,10 +80,15 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Expert" EntityType="Self.Expert" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionFiles" EntityType="Self.QuestionFiles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Question__Catego__70DDC3D8" Association="Self.FK__Question__Catego__70DDC3D8">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
           <AssociationSet Name="FK__Question__Posted__5CD6CB2B" Association="Self.FK__Question__Posted__5CD6CB2B">
             <End Role="Client" EntitySet="Client" />
             <End Role="Question" EntitySet="Question" />
@@ -105,6 +130,11 @@
             <End Role="Question" EntitySet="Questions" />
             <End Role="QuestionFile" EntitySet="QuestionFiles" />
           </AssociationSet>
+          <EntitySet Name="Categories" EntityType="Model.Category" />
+          <AssociationSet Name="FK__Question__Catego__70DDC3D8" Association="Model.FK__Question__Catego__70DDC3D8">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Question">
           <Key>
@@ -115,6 +145,8 @@
           <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Client" Relationship="Model.FK__Question__Posted__5CD6CB2B" FromRole="Question" ToRole="Client" />
           <NavigationProperty Name="QuestionFiles" Relationship="Model.FK__QuestionF__Quest__5FB337D6" FromRole="Question" ToRole="QuestionFile" />
+          <Property Name="CategoryId" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Model.FK__Question__Catego__70DDC3D8" FromRole="Question" ToRole="Category" />
         </EntityType>
         <EntityType Name="QuestionFile">
           <Key>
@@ -149,6 +181,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Questions" Relationship="Model.FK__Question__Catego__70DDC3D8" FromRole="Category" ToRole="Question" />
+        </EntityType>
+        <Association Name="FK__Question__Catego__70DDC3D8">
+          <End Type="Model.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="Model.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -174,6 +226,7 @@
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="Model.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Details" ColumnName="Details" />
                 <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -185,6 +238,14 @@
               <MappingFragment StoreEntitySet="QuestionFiles">
                 <ScalarProperty Name="Path" ColumnName="Path" />
                 <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="Model.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

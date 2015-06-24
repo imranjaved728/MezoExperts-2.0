@@ -191,6 +191,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>Mezo ADO.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Client.cs">
       <DependentUpon>Mezo ADO.tt</DependentUpon>
     </Compile>

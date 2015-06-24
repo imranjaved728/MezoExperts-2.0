@@ -169,3 +169,4 @@ F:\Imran Jawaid\MezoExperts-2.0\MezoExperts\bin\zh-Hans\System.Spatial.resources
 F:\Imran Jawaid\MezoExperts-2.0\MezoExperts\bin\zh-Hant\System.Spatial.resources.dll
 F:\Imran Jawaid\MezoExperts-2.0\MezoExperts\obj\Debug\MezoExperts.dll
 F:\Imran Jawaid\MezoExperts-2.0\MezoExperts\obj\Debug\MezoExperts.pdb
+F:\Imran Jawaid\MezoExperts-2.0\MezoExperts\obj\Debug\MezoExperts.csprojResolveAssemblyReference.cache
