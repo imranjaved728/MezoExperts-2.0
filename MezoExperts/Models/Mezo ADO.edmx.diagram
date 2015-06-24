@@ -13,6 +13,8 @@
         <AssociationConnector Association="Model.FK__QuestionF__Quest__5FB337D6" />
         <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="0.5" PointY="2.875" />
         <AssociationConnector Association="Model.FK__Question__Catego__70DDC3D8" />
+        <EntityTypeShape EntityType="Model.webpages_Membership" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Model.webpages_OAuthMembership" Width="1.5" PointX="2.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

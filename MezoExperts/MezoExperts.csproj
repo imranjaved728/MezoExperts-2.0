@@ -222,6 +222,12 @@
     <Compile Include="Models\QuestionFile.cs">
       <DependentUpon>Mezo ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\webpages_Membership.cs">
+      <DependentUpon>Mezo ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_OAuthMembership.cs">
+      <DependentUpon>Mezo ADO.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -541,6 +547,8 @@
     <Content Include="Theme\css\bootstrap.min.css" />
     <Content Include="Theme\css\custom.css" />
     <Content Include="Theme\css\freelancer.css" />
+    <Content Include="Theme\css\theme.min.css" />
+    <Content Include="Theme\css\datepicker.css" />
     <Content Include="Theme\font-awesome\css\font-awesome.css" />
     <Content Include="Theme\font-awesome\css\font-awesome.min.css" />
     <Content Include="Theme\font-awesome\fonts\fontawesome-webfont.svg" />
@@ -552,6 +560,7 @@
     <Content Include="Theme\img\portfolio\safe.png" />
     <Content Include="Theme\img\portfolio\submarine.png" />
     <Content Include="Theme\img\profile.png" />
+    <Content Include="Theme\js\bootstrap-datepicker.js" />
     <Content Include="Theme\js\bootstrap.js" />
     <Content Include="Theme\js\bootstrap.min.js" />
     <Content Include="Theme\js\cbpAnimatedHeader.js" />
@@ -561,6 +570,7 @@
     <Content Include="Theme\js\freelancer.js" />
     <Content Include="Theme\js\jqBootstrapValidation.js" />
     <Content Include="Theme\js\jquery.js" />
+    <Content Include="Theme\js\prettify.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

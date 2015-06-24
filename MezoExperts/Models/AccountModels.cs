@@ -73,10 +73,32 @@ namespace MezoExperts.Models
 
     public class RegisterModel
     {
+
+        [Required]
+        [Display(Name = "First Name")]
+        [DataType(DataType.Text)]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        [DataType(DataType.Text)]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Date of Birth")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime DOB { get; set; }
+
+        [Required]
+        [Display(Name = "Username")]
+        [DataType(DataType.Text)]
+        public string UserName { get; set; }        
+
         [Required]
         [Display(Name = "Email Address")]
         [DataType(DataType.EmailAddress, ErrorMessage = "Enter a valid Email Address please.")]
-        public string UserName { get; set; }
+        public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

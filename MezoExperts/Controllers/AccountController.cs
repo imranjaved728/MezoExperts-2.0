@@ -85,7 +85,7 @@ namespace MezoExperts.Controllers
             {
                 // Attempt to register the user
                 DBEntities db = new DBEntities();
-                if (WebSecurity.UserExists(model.UserName))
+                if (WebSecurity.UserExists(model.Email))
                 {
                     TempData["RegisterError"] = "There is already an account associated with the email address you entered.";
                     return RedirectToAction("Index", "Home");
@@ -93,8 +93,8 @@ namespace MezoExperts.Controllers
 
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    Roles.AddUserToRole(model.UserName, "client");
+                    WebSecurity.CreateUserAndAccount(model.Email, model.Password);
+                    Roles.AddUserToRole(model.Email, "client");
 
                     /*
                     User u = new User();
@@ -105,11 +105,11 @@ namespace MezoExperts.Controllers
                     */
 
                     Client c = new Client();
-                    c.Email = model.UserName;
+                    c.Email = model.Email;
                     db.Clients.Add(c);
                     db.SaveChanges();
-                    
-                    WebSecurity.Login(model.UserName, model.Password);
+
+                    WebSecurity.Login(model.Email, model.Password);
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
@@ -153,7 +153,11 @@ namespace MezoExperts.Controllers
                     */
 
                     Expert e = new Expert();
-                    e.Email = model.UserName;
+                    e.Email = model.Email;
+                    e.FirstName = model.FirstName;
+                    e.LastName = model.LastName;
+                    e.DOB = model.DOB;
+                    e.Username = model.UserName;
                     db.Experts.Add(e);
                     db.SaveChanges();
                     WebSecurity.Login(model.UserName, model.Password);
