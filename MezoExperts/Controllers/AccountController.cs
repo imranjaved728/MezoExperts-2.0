@@ -157,7 +157,7 @@ namespace MezoExperts.Controllers
                     db.Experts.Add(e);
                     db.SaveChanges();
                     WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Expert");
                 }
                 catch (MembershipCreateUserException e)
                 {
