@@ -3,10 +3,12 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
 }
 
 
-@using (Html.BeginForm("Create","Question",FormMethod.Post)) {
+@using (Html.BeginForm("Create", "Question", FormMethod.Post))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -17,19 +19,20 @@
                 <h4>Ask a question & get expert help</h4>
 
                 <div class="form-group">
-                        @Html.TextBoxFor(m => m.Title, new { placeholder = "Question Title", @class = "form-control"})
-                        @Html.ValidationMessageFor(m => m.Title)
+                    @Html.TextBoxFor(m => m.Title, new { placeholder = "Question Title", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Title)
                 </div> <!-- /.form-group -->
 
                 <div class="form-group">
                     <div class="input-group">
-                        @Html.DropDownList("CategoryId", "Select Category")
+                        @Html.DropDownListFor(m => m.CategoryId, new SelectList(ViewBag.CategoryId, "Text", "Value", "-- Select Category --"), new {@class="form-control" })
+                        @Html.DropDownList("CategoryId")
                         @Html.ValidationMessageFor(model => model.CategoryId)
                     </div>
                 </div>
 
                 <div class="form-group">
-                        @Html.TextAreaFor(model => model.Details, new { id = "QuestionText" })
+                    @Html.TextAreaFor(model => model.Details, new { id = "QuestionText" })
                     @Html.ValidationMessageFor(model => model.Details)
                 </div>
                 <button type="submit" class="btn btn-success">Get Help Now</button>

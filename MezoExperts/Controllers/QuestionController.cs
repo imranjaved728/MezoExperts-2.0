@@ -18,7 +18,7 @@ namespace MezoExperts.Controllers
 
         public ActionResult Index()
         {
-            var questions = db.Questions.Include(q => q.Client).Include(q => q.Category);
+            var questions = db.Questions.Include(q => q.Category).Include(q => q.Client);
             return View(questions.ToList());
         }
 
@@ -40,8 +40,8 @@ namespace MezoExperts.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Id");
             ViewBag.PostedBy = new SelectList(db.Clients, "Id", "Email");
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName");
             return View();
         }
 
@@ -59,8 +59,8 @@ namespace MezoExperts.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Id", question.CategoryId);
             ViewBag.PostedBy = new SelectList(db.Clients, "Id", "Email", question.PostedBy);
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", question.CategoryId);
             return View(question);
         }
 
@@ -74,8 +74,8 @@ namespace MezoExperts.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Id", question.CategoryId);
             ViewBag.PostedBy = new SelectList(db.Clients, "Id", "Email", question.PostedBy);
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", question.CategoryId);
             return View(question);
         }
 
@@ -92,8 +92,8 @@ namespace MezoExperts.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Id", question.CategoryId);
             ViewBag.PostedBy = new SelectList(db.Clients, "Id", "Email", question.PostedBy);
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", question.CategoryId);
             return View(question);
         }
 
