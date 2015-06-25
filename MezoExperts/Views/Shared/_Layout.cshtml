@@ -29,8 +29,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    <link href="../../../Theme/css/custom.css" rel="stylesheet" />
+    <link href="/Theme/css/datepicker.css" rel="stylesheet" />
+    <link href="/Theme/css/custom.css" rel="stylesheet" />
 
 </head>
 
@@ -44,7 +44,7 @@
 
     <div id="body">
         @RenderSection("featured", required: false)
-        <section class="content-wrapper main-content clear-fix">
+        <section class="content-wrapper main-content clear-fix" style="padding-bottom:0px">
             @RenderBody()
         </section>
     </div>
@@ -75,6 +75,8 @@
         </div>
     </section>
         -->
+
+   
     @Html.Partial("~/Views/Home/_Footer.cshtml")
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
@@ -83,10 +85,6 @@
             <i class="fa fa-chevron-up"></i>
         </a>
     </div>
-
-
-
-
 
     <!-- jQuery -->
     <script src="~/Theme/js/jquery.js"></script>
@@ -103,15 +101,19 @@
     <!-- Custom Theme JavaScript -->
 
     <script src="~/Theme/js/freelancer.js"></script>
-
+    <script src="~/Theme/js/prettify.js"></script>
+    <script src="~/Theme/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(function () {
+            //window.prettyPrint && prettyPrint();
+            //$('#dp3').datepicker();
 
         });
     </script>
+    
 </body>
 
-@Scripts.Render("~/Scripts/jquery-1.7.1.min.js")
+ 
 @Scripts.Render("~/Scripts/jquery.validate.js")
 @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.js")
 

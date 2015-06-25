@@ -249,3 +249,4 @@ C:\Users\Imran\Desktop\pro22\MezoExperts\bin\zh-Hans\System.Spatial.resources.dl
 C:\Users\Imran\Desktop\pro22\MezoExperts\bin\zh-Hant\System.Spatial.resources.dll
 C:\Users\Imran\Desktop\pro22\MezoExperts\obj\Debug\MezoExperts.dll
 C:\Users\Imran\Desktop\pro22\MezoExperts\obj\Debug\MezoExperts.pdb
+C:\Users\Imran\Desktop\pro22\MezoExperts\obj\Debug\MezoExperts.csprojResolveAssemblyReference.cache
