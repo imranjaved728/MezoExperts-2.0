@@ -14,15 +14,8 @@ namespace MezoExperts.Models
     
     public partial class Client
     {
-        public Client()
-        {
-            this.Questions = new HashSet<Question>();
-        }
-    
         public int Id { get; set; }
         public string Email { get; set; }
         public Nullable<int> LoginId { get; set; }
-    
-        public virtual ICollection<Question> Questions { get; set; }
     }
 }

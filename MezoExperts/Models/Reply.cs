@@ -16,11 +16,9 @@ namespace MezoExperts.Models
     {
         public int Id { get; set; }
         public int QuestionId { get; set; }
-        public int ExpertId { get; set; }
-        public int Price { get; set; }
+        public int ReplierId { get; set; }
         public string Response { get; set; }
     
-        public virtual Expert Expert { get; set; }
         public virtual Question Question { get; set; }
     }
 }

@@ -32,7 +32,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PostedBy" Type="int" Nullable="false" />
+          <Property Name="PostedBy" Type="int" />
           <Property Name="Details" Type="varchar(max)" />
           <Property Name="CategoryId" Type="varchar" MaxLength="30" />
           <Property Name="Title" Type="varchar" MaxLength="30" Nullable="false" />
@@ -51,8 +51,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="QuestionId" Type="int" Nullable="false" />
-          <Property Name="ExpertId" Type="int" Nullable="false" />
-          <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="ReplierId" Type="int" Nullable="false" />
           <Property Name="Response" Type="varchar(max)" />
         </EntityType>
         <Association Name="FK__Question__Catego__531856C7">
@@ -66,20 +65,6 @@
             </Principal>
             <Dependent Role="Question">
               <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Question__Posted__09746778">
-          <End Role="Client" Type="Self.Client" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="Question" Type="Self.Question" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Question">
-              <PropertyRef Name="PostedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -97,19 +82,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reply__ExpertId__0D44F85C">
-          <End Role="Expert" Type="Self.Expert" Multiplicity="1" />
-          <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Expert">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Reply">
-              <PropertyRef Name="ExpertId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Reply__QuestionI__690797E6">
+        <Association Name="FK__Reply__QuestionI__3552E9B6">
           <End Role="Question" Type="Self.Question" Multiplicity="1" />
           <End Role="Reply" Type="Self.Reply" Multiplicity="*" />
           <ReferentialConstraint>
@@ -132,19 +105,11 @@
             <End Role="Category" EntitySet="Category" />
             <End Role="Question" EntitySet="Question" />
           </AssociationSet>
-          <AssociationSet Name="FK__Question__Posted__09746778" Association="Self.FK__Question__Posted__09746778">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Question" EntitySet="Question" />
-          </AssociationSet>
           <AssociationSet Name="FK__QuestionF__Quest__51300E55" Association="Self.FK__QuestionF__Quest__51300E55">
             <End Role="Question" EntitySet="Question" />
             <End Role="QuestionFiles" EntitySet="QuestionFiles" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reply__ExpertId__0D44F85C" Association="Self.FK__Reply__ExpertId__0D44F85C">
-            <End Role="Expert" EntitySet="Expert" />
-            <End Role="Reply" EntitySet="Reply" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Reply__QuestionI__690797E6" Association="Self.FK__Reply__QuestionI__690797E6">
+          <AssociationSet Name="FK__Reply__QuestionI__3552E9B6" Association="Self.FK__Reply__QuestionI__3552E9B6">
             <End Role="Question" EntitySet="Question" />
             <End Role="Reply" EntitySet="Reply" />
           </AssociationSet>
@@ -159,55 +124,28 @@
           </Key>
           <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
           <Property Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
-          <NavigationProperty Name="Questions" Relationship="Model.FK__Question__Posted__5224328E" FromRole="Client" ToRole="Question" />
-          <Property Name="LoginId" Type="Int32" />
-        </EntityType>
-        <EntityType Name="Expert">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-          <Property Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" Type="String" />
-          <NavigationProperty Name="Replies" Relationship="Model.FK__Reply__ExpertId__69FBBC1F" FromRole="Expert" ToRole="Reply" />
           <Property Name="LoginId" Type="Int32" />
         </EntityType>
         <EntityContainer Name="DBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Clients" EntityType="Self.Client" />
-          <EntitySet Name="Experts" EntityType="Self.Expert" />
-          <EntitySet Name="QuestionFiles" EntityType="Model.QuestionFile" />
           <EntitySet Name="Categories" EntityType="Model.Category" />
+          <EntitySet Name="Experts" EntityType="Model.Expert" />
           <EntitySet Name="Questions" EntityType="Model.Question" />
+          <EntitySet Name="QuestionFiles" EntityType="Model.QuestionFile" />
+          <EntitySet Name="Replies" EntityType="Model.Reply" />
           <AssociationSet Name="FK__Question__Catego__531856C7" Association="Model.FK__Question__Catego__531856C7">
             <End Role="Category" EntitySet="Categories" />
-            <End Role="Question" EntitySet="Questions" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Question__Posted__5224328E" Association="Model.FK__Question__Posted__5224328E">
-            <End Role="Client" EntitySet="Clients" />
             <End Role="Question" EntitySet="Questions" />
           </AssociationSet>
           <AssociationSet Name="FK__QuestionF__Quest__51300E55" Association="Model.FK__QuestionF__Quest__51300E55">
             <End Role="Question" EntitySet="Questions" />
             <End Role="QuestionFile" EntitySet="QuestionFiles" />
           </AssociationSet>
-          <EntitySet Name="Replies" EntityType="Model.Reply" />
-          <AssociationSet Name="FK__Reply__ExpertId__69FBBC1F" Association="Model.FK__Reply__ExpertId__69FBBC1F">
-            <End Role="Expert" EntitySet="Experts" />
-            <End Role="Reply" EntitySet="Replies" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Reply__QuestionI__690797E6" Association="Model.FK__Reply__QuestionI__690797E6">
+          <AssociationSet Name="FK__Reply__QuestionI__3552E9B6" Association="Model.FK__Reply__QuestionI__3552E9B6">
             <End Role="Question" EntitySet="Questions" />
             <End Role="Reply" EntitySet="Replies" />
           </AssociationSet>
           </EntityContainer>
-        <EntityType Name="QuestionFile">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
-          <Property Name="QuestionId" Nullable="false" Type="Int32" />
-          <Property Name="Path" MaxLength="Max" FixedLength="false" Unicode="false" Type="String" />
-          <NavigationProperty Name="Question" Relationship="Model.FK__QuestionF__Quest__51300E55" FromRole="QuestionFile" ToRole="Question" />
-        </EntityType>
         <EntityType Name="Category">
           <Key>
             <PropertyRef Name="Id" />
@@ -215,19 +153,45 @@
           <Property Name="Id" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Questions" Relationship="Model.FK__Question__Catego__531856C7" FromRole="Category" ToRole="Question" />
         </EntityType>
+        <EntityType Name="Expert">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LoginId" Type="Int32" />
+        </EntityType>
         <EntityType Name="Question">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PostedBy" Type="Int32" Nullable="false" />
+          <Property Name="PostedBy" Type="Int32" />
           <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CategoryId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Category" Relationship="Model.FK__Question__Catego__531856C7" FromRole="Question" ToRole="Category" />
-          <NavigationProperty Name="Client" Relationship="Model.FK__Question__Posted__5224328E" FromRole="Question" ToRole="Client" />
           <NavigationProperty Name="QuestionFiles" Relationship="Model.FK__QuestionF__Quest__51300E55" FromRole="Question" ToRole="QuestionFile" />
-          <NavigationProperty Name="Replies" Relationship="Model.FK__Reply__QuestionI__690797E6" FromRole="Question" ToRole="Reply" />
+          <NavigationProperty Name="Replies" Relationship="Model.FK__Reply__QuestionI__3552E9B6" FromRole="Question" ToRole="Reply" />
+        </EntityType>
+        <EntityType Name="QuestionFile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionId" Type="Int32" Nullable="false" />
+          <Property Name="Path" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Question" Relationship="Model.FK__QuestionF__Quest__51300E55" FromRole="QuestionFile" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="Reply">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionId" Type="Int32" Nullable="false" />
+          <Property Name="ReplierId" Type="Int32" Nullable="false" />
+          <Property Name="Response" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Question" Relationship="Model.FK__Reply__QuestionI__3552E9B6" FromRole="Reply" ToRole="Question" />
         </EntityType>
         <Association Name="FK__Question__Catego__531856C7">
           <End Type="Model.Category" Role="Category" Multiplicity="0..1">
@@ -240,20 +204,6 @@
             </Principal>
             <Dependent Role="Question">
               <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Question__Posted__5224328E">
-          <End Type="Model.Client" Role="Client" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="Model.Question" Role="Question" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Question">
-              <PropertyRef Name="PostedBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -271,31 +221,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Reply">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="QuestionId" Type="Int32" Nullable="false" />
-          <Property Name="ExpertId" Type="Int32" Nullable="false" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <Property Name="Response" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Expert" Relationship="Model.FK__Reply__ExpertId__69FBBC1F" FromRole="Reply" ToRole="Expert" />
-          <NavigationProperty Name="Question" Relationship="Model.FK__Reply__QuestionI__690797E6" FromRole="Reply" ToRole="Question" />
-        </EntityType>
-        <Association Name="FK__Reply__ExpertId__69FBBC1F">
-          <End Type="Model.Expert" Role="Expert" Multiplicity="1" />
-          <End Type="Model.Reply" Role="Reply" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Expert">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Reply">
-              <PropertyRef Name="ExpertId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Reply__QuestionI__690797E6">
+        <Association Name="FK__Reply__QuestionI__3552E9B6">
           <End Type="Model.Question" Role="Question" Multiplicity="1" />
           <End Type="Model.Reply" Role="Reply" Multiplicity="*" />
           <ReferentialConstraint>
@@ -322,27 +248,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="Model.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Experts">
             <EntityTypeMapping TypeName="Model.Expert">
               <MappingFragment StoreEntitySet="Expert">
                 <ScalarProperty Name="LoginId" ColumnName="LoginId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="QuestionFiles">
-            <EntityTypeMapping TypeName="Model.QuestionFile">
-              <MappingFragment StoreEntitySet="QuestionFiles">
-                <ScalarProperty Name="Path" ColumnName="Path" />
-                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="Model.Category">
-              <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -358,18 +275,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Replies">
-            <EntityTypeMapping TypeName="Model.Reply">
-              <MappingFragment StoreEntitySet="Reply">
-                <ScalarProperty Name="Response" ColumnName="Response" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="ExpertId" ColumnName="ExpertId" />
+          <EntitySetMapping Name="QuestionFiles">
+            <EntityTypeMapping TypeName="Model.QuestionFile">
+              <MappingFragment StoreEntitySet="QuestionFiles">
+                <ScalarProperty Name="Path" ColumnName="Path" />
                 <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          <EntitySetMapping Name="Replies">
+            <EntityTypeMapping TypeName="Model.Reply">
+              <MappingFragment StoreEntitySet="Reply">
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="ReplierId" ColumnName="ReplierId" />
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
