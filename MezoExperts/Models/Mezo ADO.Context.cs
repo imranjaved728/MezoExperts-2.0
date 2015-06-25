@@ -30,5 +30,6 @@ namespace MezoExperts.Models
         public DbSet<QuestionFile> QuestionFiles { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Question> Questions { get; set; }
+        public DbSet<Reply> Replies { get; set; }
     }
 }

@@ -12,17 +12,15 @@ namespace MezoExperts.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Client
+    public partial class Reply
     {
-        public Client()
-        {
-            this.Questions = new HashSet<Question>();
-        }
-    
         public int Id { get; set; }
-        public string Email { get; set; }
-        public Nullable<int> LoginId { get; set; }
+        public int QuestionId { get; set; }
+        public int ExpertId { get; set; }
+        public int Price { get; set; }
+        public string Response { get; set; }
     
-        public virtual ICollection<Question> Questions { get; set; }
+        public virtual Expert Expert { get; set; }
+        public virtual Question Question { get; set; }
     }
 }

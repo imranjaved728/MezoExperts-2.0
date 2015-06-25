@@ -14,7 +14,15 @@ namespace MezoExperts.Models
     
     public partial class Expert
     {
+        public Expert()
+        {
+            this.Replies = new HashSet<Reply>();
+        }
+    
         public int Id { get; set; }
         public string Email { get; set; }
+        public Nullable<int> LoginId { get; set; }
+    
+        public virtual ICollection<Reply> Replies { get; set; }
     }
 }

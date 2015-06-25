@@ -106,6 +106,7 @@ namespace MezoExperts.Controllers
 
                     Client c = new Client();
                     c.Email = model.UserName;
+                    c.LoginId = WebSecurity.GetUserId(model.UserName);
                     db.Clients.Add(c);
                     db.SaveChanges();
                     
@@ -154,6 +155,7 @@ namespace MezoExperts.Controllers
 
                     Expert e = new Expert();
                     e.Email = model.UserName;
+                    e.LoginId = WebSecurity.GetUserId(model.UserName);
                     db.Experts.Add(e);
                     db.SaveChanges();
                     WebSecurity.Login(model.UserName, model.Password);

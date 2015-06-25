@@ -25,8 +25,8 @@
 
                 <div class="form-group">
                     <div class="input-group">
-                        @Html.DropDownListFor(m => m.CategoryId, new SelectList(ViewBag.CategoryId, "Text", "Value", "-- Select Category --"), new {@class="form-control" })
-                        @Html.DropDownList("CategoryId")
+                        @Html.DropDownListFor(m => m.CategoryId, new SelectList(ViewBag.CategoryId, "Text", "Value", "-- Select Category --"), new { @class = "form-control" })
+                        @*Html.DropDownList("CategoryId")*@
                         @Html.ValidationMessageFor(model => model.CategoryId)
                     </div>
                 </div>

@@ -222,6 +222,9 @@
     <Compile Include="Models\QuestionFile.cs">
       <DependentUpon>Mezo ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Reply.cs">
+      <DependentUpon>Mezo ADO.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

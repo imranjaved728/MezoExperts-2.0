@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9b76ba1ef15a48ed99479e778280ec05" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.Client" PointX="0.5" PointY="0.625" Width="1.5" IsExpanded="true" />
+      <Diagram DiagramId="9b76ba1ef15a48ed99479e778280ec05" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="Model.Client" PointX="0.5" PointY="0.5" Width="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Expert" PointX="2.75" PointY="0.5" Width="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.QuestionFile" PointX="3" PointY="3" Width="1.5" />
         <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="4.875" PointY="1.75" />
@@ -13,6 +13,9 @@
         <AssociationConnector Association="Model.FK__Question__Catego__531856C7" />
         <AssociationConnector Association="Model.FK__Question__Posted__5224328E" />
         <AssociationConnector Association="Model.FK__QuestionF__Quest__51300E55" />
+        <EntityTypeShape EntityType="Model.Reply" Width="1.5" PointX="6" PointY="3.875" />
+        <AssociationConnector Association="Model.FK__Reply__ExpertId__69FBBC1F" />
+        <AssociationConnector Association="Model.FK__Reply__QuestionI__690797E6" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
