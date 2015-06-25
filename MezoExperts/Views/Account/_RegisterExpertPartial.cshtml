@@ -1,6 +1,6 @@
 ﻿@model MezoExperts.Models.RegisterModel
 
-@using (Html.BeginForm("RegisterExpert", "Account",FormMethod.Post))
+@using (Html.BeginForm("RegisterExpert", "Account", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary()
@@ -17,65 +17,15 @@
                             <hr class="star-primary">
 
                             @*<form role="form">*@
-                            <div class="form-group input-group">
-                                @Html.Label("Personal Information")
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    @Html.TextBoxFor(m => m.FirstName, new { placeholder = "First Name", @class = "form-control"})
-                                    @*<input type="text" class="form-control" id="uLogin" placeholder="Login">*@
-                                    <label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
-
-                                </div>
-                                @Html.ValidationMessageFor(m => m.FirstName)
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    @Html.TextBoxFor(m => m.LastName, new { placeholder = "Last Name", @class = "form-control" })
-                                    @*<input type="text" class="form-control" id="uLogin" placeholder="Login">*@
-                                    <label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
-
-                                </div>
-                                @Html.ValidationMessageFor(m => m.LastName)
-                            </div>
-                            <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
-                                <input class="span2" size="16" type="text" value="12-02-2012">
-                                <span class="add-on"><i class="icon-th"></i></span>
-                            </div>
 
                             <div class="form-group">
                                 <div class="input-group">
-                                    @Html.EditorFor(m => m.DOB)
-                                    @*<input type="text" class="form-control" id="uLogin" placeholder="Login">*@
-                                    <label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
-
-                                </div>
-                                @Html.ValidationMessageFor(m => m.DOB)
-                            </div>
-                            <div class="form-group input-group">
-                                @Html.Label("Login Information")                             
-                            </div>
-
-
-                            <div class="form-group">
-                                <div class="input-group">
-                                    @Html.TextBoxFor(m => m.UserName, new { placeholder = "Username", @class = "form-control" })
+                                    @Html.TextBoxFor(m => m.UserName, new { placeholder = "Email Address", @class = "form-control", type = "email" })
                                     @*<input type="text" class="form-control" id="uLogin" placeholder="Login">*@
                                     <label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
 
                                 </div>
                                 @Html.ValidationMessageFor(m => m.UserName)
-                            </div>
-
-            
-                            <div class="form-group">
-                                <div class="input-group">
-                                    @Html.TextBoxFor(m => m.Email, new { placeholder = "Email Address", @class = "form-control", type = "email" })
-                                    @*<input type="text" class="form-control" id="uLogin" placeholder="Login">*@
-                                    <label for="uLogin" class="input-group-addon glyphicon glyphicon-user"></label>
-
-                                </div>
-                                @Html.ValidationMessageFor(m => m.Email)
                             </div> <!-- /.form-group -->
 
                             <div class="form-group">
@@ -95,7 +45,7 @@
                                 </div> <!-- /.input-group -->
                                 @Html.ValidationMessageFor(m => m.ConfirmPassword)
                             </div> <!-- /.form-group -->
-                            <br/>
+
                             <input type="submit" class="btn btn-success" value="Sign Up" />
 
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
@@ -110,6 +60,4 @@
         </div>
     </div>
 
-
-    
 }
