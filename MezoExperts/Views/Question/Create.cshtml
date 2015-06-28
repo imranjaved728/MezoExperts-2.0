@@ -35,10 +35,10 @@
                     @Html.TextAreaFor(model => model.Details, new { id = "QuestionText" })
                     @Html.ValidationMessageFor(model => model.Details)
                 </div>
+                <input type="file" multiple name="files" />
                 @{if (WebSecurity.IsAuthenticated)
                 {
                     <input type="hidden" value=@WebSecurity.CurrentUserId name="PostedBy" />
-                    <input type="file" multiple name="files" />
                 }
                 }
 
