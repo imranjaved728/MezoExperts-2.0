@@ -32,7 +32,8 @@
             @Html.DisplayFor(modelItem => item.PostedBy)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Details)
+            @*Html.DisplayFor(modelItem => item.Details)*@
+            @Html.Raw(item.Details)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Category.Id)

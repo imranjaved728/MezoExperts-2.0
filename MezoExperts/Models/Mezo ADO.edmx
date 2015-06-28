@@ -36,6 +36,7 @@
           <Property Name="Details" Type="varchar(max)" />
           <Property Name="CategoryId" Type="varchar" MaxLength="30" />
           <Property Name="Title" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="Time" Type="datetime" />
         </EntityType>
         <EntityType Name="QuestionFiles">
           <Key>
@@ -53,6 +54,7 @@
           <Property Name="QuestionId" Type="int" Nullable="false" />
           <Property Name="ReplierId" Type="int" Nullable="false" />
           <Property Name="Response" Type="varchar(max)" />
+          <Property Name="Time" Type="datetime" />
         </EntityType>
         <Association Name="FK__Question__Catego__531856C7">
           <End Role="Category" Type="Self.Category" Multiplicity="0..1">
@@ -173,6 +175,7 @@
           <NavigationProperty Name="Category" Relationship="Model.FK__Question__Catego__531856C7" FromRole="Question" ToRole="Category" />
           <NavigationProperty Name="QuestionFiles" Relationship="Model.FK__QuestionF__Quest__51300E55" FromRole="Question" ToRole="QuestionFile" />
           <NavigationProperty Name="Replies" Relationship="Model.FK__Reply__QuestionI__3552E9B6" FromRole="Question" ToRole="Reply" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="QuestionFile">
           <Key>
@@ -192,6 +195,7 @@
           <Property Name="ReplierId" Type="Int32" Nullable="false" />
           <Property Name="Response" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Question" Relationship="Model.FK__Reply__QuestionI__3552E9B6" FromRole="Reply" ToRole="Question" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="FK__Question__Catego__531856C7">
           <End Type="Model.Category" Role="Category" Multiplicity="0..1">
@@ -267,6 +271,7 @@
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="Model.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="Details" ColumnName="Details" />
@@ -287,6 +292,7 @@
           <EntitySetMapping Name="Replies">
             <EntityTypeMapping TypeName="Model.Reply">
               <MappingFragment StoreEntitySet="Reply">
+                <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="Response" ColumnName="Response" />
                 <ScalarProperty Name="ReplierId" ColumnName="ReplierId" />
                 <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />

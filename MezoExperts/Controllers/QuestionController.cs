@@ -51,6 +51,7 @@ namespace MezoExperts.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Question question)
         {
+            question.Time = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Questions.Add(question);

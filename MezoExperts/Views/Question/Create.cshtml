@@ -35,6 +35,12 @@
                     @Html.TextAreaFor(model => model.Details, new { id = "QuestionText" })
                     @Html.ValidationMessageFor(model => model.Details)
                 </div>
+                @{if (WebSecurity.IsAuthenticated)
+                {
+                    <input type="hidden" value=@WebSecurity.CurrentUserId name="PostedBy" />
+                }
+                }
+
                 <button type="submit" class="btn btn-success">Get Help Now</button>
             </div>
         </div>

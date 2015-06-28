@@ -18,6 +18,7 @@ namespace MezoExperts.Models
         public int QuestionId { get; set; }
         public int ReplierId { get; set; }
         public string Response { get; set; }
+        public Nullable<System.DateTime> Time { get; set; }
     
         public virtual Question Question { get; set; }
     }
