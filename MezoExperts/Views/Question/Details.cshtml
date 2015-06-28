@@ -37,6 +37,13 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Title)
     </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Time)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Time)
+    </div>
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
