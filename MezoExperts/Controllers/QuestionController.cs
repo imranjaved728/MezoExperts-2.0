@@ -49,13 +49,42 @@ namespace MezoExperts.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Question question)
+        public ActionResult Create(Question question, HttpPostedFileBase[] files)
         {
             question.Time = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Questions.Add(question);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                    if (!System.IO.Directory.Exists(Server.MapPath("~/UserFiles/Q" + question.Id)))
+                    {
+                        System.IO.Directory.CreateDirectory(Server.MapPath("~/UserFiles/Q" + question.Id));
+                    }
+                    foreach (HttpPostedFileBase file in files)
+                    {
+                        if (file != null)
+                        {
+                            string filename = System.IO.Path.GetFileName(file.FileName);
+                            string path = System.IO.Path.Combine(
+                                       Server.MapPath("~/UserFiles/Q" + question.Id), filename);
+
+                            file.SaveAs(path);
+                            QuestionFile qf = new QuestionFile();
+                            qf.QuestionId = question.Id;
+                            qf.Path = question.Id + "/" + filename;
+                            db.QuestionFiles.Add(qf);
+                            db.SaveChanges();
+                        }
+                    }
+                }
+                catch
+                {
+                    ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Id", question.CategoryId);
+                    return View(question);
+                }
+
                 return RedirectToAction("Index");
             }
 

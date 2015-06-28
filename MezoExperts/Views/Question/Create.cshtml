@@ -7,7 +7,7 @@
 }
 
 
-@using (Html.BeginForm("Create", "Question", FormMethod.Post))
+@using (Html.BeginForm("Create", "Question", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -38,6 +38,7 @@
                 @{if (WebSecurity.IsAuthenticated)
                 {
                     <input type="hidden" value=@WebSecurity.CurrentUserId name="PostedBy" />
+                    <input type="file" multiple name="files" />
                 }
                 }
 
