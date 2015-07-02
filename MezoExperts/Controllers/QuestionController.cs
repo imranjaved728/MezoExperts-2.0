@@ -19,7 +19,7 @@ namespace MezoExperts.Controllers
         public ActionResult Index()
         {
             var questions = db.Questions.Include(q => q.Category);
-            return View(questions.ToList());
+            return View(questions.OrderByDescending(m=>m.Time).ToList());
         }
 
         //
