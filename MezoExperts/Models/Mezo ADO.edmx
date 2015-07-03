@@ -32,11 +32,12 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PostedBy" Type="int" />
+          <Property Name="PostedBy" Type="int" Nullable="false" />
           <Property Name="Details" Type="varchar(max)" />
           <Property Name="CategoryId" Type="varchar" MaxLength="30" />
           <Property Name="Title" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="Time" Type="datetime" />
+          <Property Name="Status" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="QuestionFiles">
           <Key>
@@ -168,7 +169,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PostedBy" Type="Int32" />
+          <Property Name="PostedBy" Type="Int32" Nullable="false" />
           <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="CategoryId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
@@ -176,6 +177,7 @@
           <NavigationProperty Name="QuestionFiles" Relationship="Model.FK__QuestionF__Quest__51300E55" FromRole="Question" ToRole="QuestionFile" />
           <NavigationProperty Name="Replies" Relationship="Model.FK__Reply__QuestionI__3552E9B6" FromRole="Question" ToRole="Reply" />
           <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="QuestionFile">
           <Key>
@@ -271,6 +273,7 @@
           <EntitySetMapping Name="Questions">
             <EntityTypeMapping TypeName="Model.Question">
               <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />

@@ -3,49 +3,27 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="container">
 
-<h2>Details</h2>
-
-<fieldset>
-    <legend>Question</legend>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.PostedBy)
+    <div class="col-lg-8">
+        <div class="col-lg-4">
+            @Html.DisplayFor(m => m.Title)
+        </div>
+        <div class="col-lg-2">
+            @Html.DisplayFor(m => m.Time)
+        </div>
+        <div class="col-lg-2">
+            @Html.DisplayFor(model => model.Category.Id)
+        </div>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PostedBy)
-    </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Details)
-    </div>
-    <div class="display-field">
-        @*Html.DisplayFor(model => model.Details)*@
+    <div class="col-lg-8">
         @Html.Raw(Model.Details)
     </div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Category.Id)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Category.Id)
-    </div>
+</div>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Title)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Title)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Time)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Time)
-    </div>
-</fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

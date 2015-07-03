@@ -14,7 +14,7 @@ namespace MezoExperts.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Web.Mvc;
-
+    
     public partial class Question
     {
         public Question()
@@ -40,6 +40,7 @@ namespace MezoExperts.Models
         public string Title { get; set; }
 
         public Nullable<System.DateTime> Time { get; set; }
+        public string Status { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual ICollection<QuestionFile> QuestionFiles { get; set; }
