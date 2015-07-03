@@ -52,6 +52,7 @@ namespace MezoExperts.Controllers
         public ActionResult Create(Question question, HttpPostedFileBase[] files)
         {
             question.Time = DateTime.Now;
+            question.Status = "Pending";
             if (ModelState.IsValid)
             {
                 db.Questions.Add(question);
