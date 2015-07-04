@@ -654,8 +654,8 @@
     <Content Include="Views\Question\Delete.cshtml" />
     <Content Include="Views\Reply\Index.cshtml" />
     <Content Include="Views\Reply\Details.cshtml" />
-    <Content Include="Views\Reply\Create.cshtml" />
     <Content Include="Views\Reply\Delete.cshtml" />
+    <Content Include="Views\Reply\Create.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

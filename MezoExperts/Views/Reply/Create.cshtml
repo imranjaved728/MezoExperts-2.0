@@ -1,60 +1,24 @@
 ﻿@model MezoExperts.Models.Reply
 
 @{
-    ViewBag.Title = "Create";
+    int QuestionId = ViewBag.QuestionId;
 }
 
-<h2>Create</h2>
-
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Create","Reply",FormMethod.Post))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+    
+    <input type="hidden" name="QuestionId" value=@QuestionId />
+    <input type="hidden" name="ReplierId" value=@WebSecurity.CurrentUserId />
 
-    <fieldset>
-        <legend>Reply</legend>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.QuestionId, "Question")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("QuestionId", String.Empty)
-            @Html.ValidationMessageFor(model => model.QuestionId)
-        </div>
+    <div class="form-group">
+        @Html.EditorFor(model => model.Response, new { placeholder = "Reply here...", @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Response)
+    </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ReplierId)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.ReplierId)
-            @Html.ValidationMessageFor(model => model.ReplierId)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Response)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Response)
-            @Html.ValidationMessageFor(model => model.Response)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Time)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Time)
-            @Html.ValidationMessageFor(model => model.Time)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <p>
+        <input type="submit" value="Create" class="btn btn-success" />
+    </p>
 }

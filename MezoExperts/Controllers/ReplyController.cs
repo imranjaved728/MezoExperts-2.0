@@ -38,9 +38,10 @@ namespace MezoExperts.Controllers
         //
         // GET: /Reply/Create
 
-        public ActionResult Create()
+
+        public ActionResult Create(int QuestionId)
         {
-            ViewBag.QuestionId = new SelectList(db.Questions, "Id", "Details");
+            ViewBag.QuestionId = QuestionId;
             return View();
         }
 
@@ -51,6 +52,7 @@ namespace MezoExperts.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Reply reply)
         {
+            reply.Time = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Replies.Add(reply);
