@@ -2,6 +2,7 @@
 
 @{
     int QuestionId = ViewBag.QuestionId;
+    Layout = null;
 }
 
 @using (Html.BeginForm("Create","Reply",FormMethod.Post))
@@ -14,8 +15,10 @@
 
 
     <div class="form-group">
-        @Html.EditorFor(model => model.Response, new { placeholder = "Reply here...", @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Response)
+        <div class="input-group">
+            @Html.TextBoxFor(model => model.Response, new { placeholder = "Reply here...", @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Response)
+        </div>
     </div>
 
     <p>
