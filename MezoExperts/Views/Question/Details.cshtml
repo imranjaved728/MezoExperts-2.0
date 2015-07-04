@@ -5,11 +5,11 @@
 }
 <div class="container">
 
-    <div class="col-lg-8">
+    <div class="col-lg-8 col-lg-offset-2">
         <div class="col-lg-4">
             @Html.DisplayFor(m => m.Title)
         </div>
-        <div class="col-lg-2">
+        <div class="col-lg-2 col-lg-offset-2">
             @Html.DisplayFor(m => m.Time)
         </div>
         <div class="col-lg-2">
@@ -17,13 +17,21 @@
         </div>
     </div>
 
-    <div class="col-lg-8">
+    <div class="col-lg-8 col-lg-offset-2">
         @Html.Raw(Model.Details)
     </div>
 
-</div>
+    @{if (WebSecurity.IsAuthenticated)
+    {
+        if (WebSecurity.CurrentUserId == Model.PostedBy || User.IsInRole("Expert"))
+        {
+            <div class="col-lg-8 col-lg-offset-2">
+                @{Html.RenderAction("Create", "Reply", new { QuestionId = Model.Id });}
+            </div>
+        }
+    }
 
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    }
+
+
+</div>

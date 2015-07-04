@@ -1,0 +1,24 @@
+﻿@model MezoExperts.Models.Reply
+
+@{
+    int QuestionId = ViewBag.QuestionId;
+}
+
+@using (Html.BeginForm("Create","Reply",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    
+    <input type="hidden" name="QuestionId" value=@QuestionId />
+    <input type="hidden" name="ReplierId" value=@WebSecurity.CurrentUserId />
+
+
+    <div class="form-group">
+        @Html.EditorFor(model => model.Response, new { placeholder = "Reply here...", @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Response)
+    </div>
+
+    <p>
+        <input type="submit" value="Create" class="btn btn-success" />
+    </p>
+}

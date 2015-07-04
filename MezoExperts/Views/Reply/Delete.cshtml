@@ -1,0 +1,47 @@
+﻿@model MezoExperts.Models.Reply
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Reply</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Question.Details)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Question.Details)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ReplierId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ReplierId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Response)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Response)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Time)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Time)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
