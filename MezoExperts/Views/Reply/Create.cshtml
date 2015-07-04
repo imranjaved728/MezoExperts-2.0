@@ -1,0 +1,60 @@
+﻿@model MezoExperts.Models.Reply
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Reply</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QuestionId, "Question")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("QuestionId", String.Empty)
+            @Html.ValidationMessageFor(model => model.QuestionId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ReplierId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ReplierId)
+            @Html.ValidationMessageFor(model => model.ReplierId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Response)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Response)
+            @Html.ValidationMessageFor(model => model.Response)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Time)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Time)
+            @Html.ValidationMessageFor(model => model.Time)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
