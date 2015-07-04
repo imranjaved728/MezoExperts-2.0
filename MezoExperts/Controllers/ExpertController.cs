@@ -13,7 +13,7 @@ namespace MezoExperts.Controllers
 
         public ActionResult Index()
         {
-            return View("Profile");
+            return View("Home");
         }
 
         //

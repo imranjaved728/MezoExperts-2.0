@@ -70,8 +70,50 @@ namespace MezoExperts.Models
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
+    public class ExpertRegisterModel
+    {
+        [Required]
+        [Display(Name = "First Name")]
+        [DataType(DataType.Text)]
+        public string FirstName { get; set; }
 
-    public class RegisterModel
+        [Required]
+        [Display(Name = "Last Name")]
+        [DataType(DataType.Text)]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Date of Birth")]
+        public String DOB { get; set; }
+
+        [Required]
+        [Display(Name = "Username")]
+        [DataType(DataType.Text)]
+        public string UserName { get; set; }        
+
+        [Required]
+        [Display(Name = "Email Address")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Enter a valid Email Address please.")]
+        public string Email { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Password")]
+        public string Password { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm Password")]
+        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        public string ConfirmPassword { get; set; }
+
+
+
+
+    }
+
+    public class ClientRegisterModel
     {
         [Required]
         [Display(Name = "Email Address")]
@@ -96,9 +138,11 @@ namespace MezoExperts.Models
         public HomeModel()
         {
             Login = new LoginModel();
-            Register = new RegisterModel();
+            RegisterClient = new ClientRegisterModel();
+            RegisterExpert = new ExpertRegisterModel();
         }
-        public RegisterModel Register;
+        public ClientRegisterModel RegisterClient;
+        public ExpertRegisterModel RegisterExpert;
         public LoginModel Login;
 
     }

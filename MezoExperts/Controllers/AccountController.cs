@@ -79,7 +79,7 @@ namespace MezoExperts.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(RegisterModel model)
+        public ActionResult Register(ClientRegisterModel model)
         {
             if (ModelState.IsValid)
             {
@@ -128,13 +128,13 @@ namespace MezoExperts.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult RegisterExpert(RegisterModel model)
+        public ActionResult RegisterExpert(ExpertRegisterModel model)
         {
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
                 DBEntities db = new DBEntities();
-                if (WebSecurity.UserExists(model.UserName))
+                if (WebSecurity.UserExists(model.Email))
                 {
                     TempData["ExpertRegisterError"] = "There is already an account associated with the email address you entered.";
                     return RedirectToAction("Index", "Home");
@@ -142,8 +142,8 @@ namespace MezoExperts.Controllers
 
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
-                    Roles.AddUserToRole(model.UserName, "expert");
+                    WebSecurity.CreateUserAndAccount(model.Email, model.Password);
+                    Roles.AddUserToRole(model.Email, "expert");
 
                     /*
                     User u = new User();
@@ -154,11 +154,16 @@ namespace MezoExperts.Controllers
                     */
 
                     Expert e = new Expert();
-                    e.Email = model.UserName;
-                    e.LoginId = WebSecurity.GetUserId(model.UserName);
+                    e.Email = model.Email;
+                    e.LoginId = WebSecurity.GetUserId(model.Email);
+                    e.FirstName = model.FirstName;
+                    e.LastName = model.LastName;
+                    DateTime dt =Convert.ToDateTime(model.DOB);
+                    e.DOB = dt;
+                    e.Username = model.Email;
                     db.Experts.Add(e);
                     db.SaveChanges();
-                    WebSecurity.Login(model.UserName, model.Password);
+                    WebSecurity.Login(model.Email, model.Password);
                     return RedirectToAction("Index", "Expert");
                 }
                 catch (MembershipCreateUserException e)
