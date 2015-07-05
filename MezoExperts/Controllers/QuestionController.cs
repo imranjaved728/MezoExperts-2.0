@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MezoExperts.Models;
+using WebMatrix.WebData;
 
 namespace MezoExperts.Controllers
 {
@@ -18,8 +19,16 @@ namespace MezoExperts.Controllers
 
         public ActionResult Index()
         {
-            var questions = db.Questions.Include(q => q.Category);
-            return View(questions.OrderByDescending(m=>m.Time).ToList());
+            if (User.IsInRole("Client"))
+            {
+                var questions = db.Questions.Include(q => q.Category).Where(q => q.PostedBy == WebSecurity.CurrentUserId);
+                return View(questions.OrderByDescending(m => m.Time).ToList());
+            }
+            else
+            {
+                var questions = db.Questions.Include(q => q.Category);
+                return View(questions.OrderByDescending(m => m.Time).ToList());
+            }
         }
 
         //

@@ -11,13 +11,18 @@ namespace MezoExperts.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class Reply
     {
         public int Id { get; set; }
         public int QuestionId { get; set; }
         public int ReplierId { get; set; }
+        
+        [Required(ErrorMessage="Can't post an empty reply.")]
         public string Response { get; set; }
+
         public Nullable<System.DateTime> Time { get; set; }
     
         public virtual Question Question { get; set; }

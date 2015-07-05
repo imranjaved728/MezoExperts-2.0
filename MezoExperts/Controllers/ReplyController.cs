@@ -57,11 +57,12 @@ namespace MezoExperts.Controllers
             {
                 db.Replies.Add(reply);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "Question", new { id=reply.QuestionId});
             }
-
-            ViewBag.QuestionId = new SelectList(db.Questions, "Id", "Details", reply.QuestionId);
-            return View(reply);
+            
+            return RedirectToAction("Details", "Question", new { id = reply.QuestionId });
+            //ViewBag.QuestionId = new SelectList(db.Questions, "Id", "Details", reply.QuestionId);
+            //return View(reply);
         }
 
         

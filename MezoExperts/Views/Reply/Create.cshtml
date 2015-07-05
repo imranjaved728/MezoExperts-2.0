@@ -5,23 +5,23 @@
     Layout = null;
 }
 
-@using (Html.BeginForm("Create","Reply",FormMethod.Post))
+@using (Html.BeginForm("Create", "Reply", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    
+
     <input type="hidden" name="QuestionId" value=@QuestionId />
     <input type="hidden" name="ReplierId" value=@WebSecurity.CurrentUserId />
 
 
     <div class="form-group">
-        <div class="input-group">
-            @Html.TextBoxFor(model => model.Response, new { placeholder = "Reply here...", @class = "form-control" })
+        <div class="input-group col-lg-12">
+            @Html.TextBoxFor(model => model.Response, new { placeholder = "Reply to this question.", @class = "form-control",required=true })
             @Html.ValidationMessageFor(model => model.Response)
         </div>
     </div>
 
     <p>
-        <input type="submit" value="Create" class="btn btn-success" />
+        <input type="submit" value="Reply" class="btn btn-success" />
     </p>
 }
