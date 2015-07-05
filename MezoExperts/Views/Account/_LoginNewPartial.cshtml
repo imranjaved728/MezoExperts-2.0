@@ -3,7 +3,7 @@
 @using (Html.BeginForm("Login", "Account",FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
+
 
     <div class="modal fade" id="loginNewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
