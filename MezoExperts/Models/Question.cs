@@ -40,7 +40,7 @@ namespace MezoExperts.Models
         public string Title { get; set; }
 
         public Nullable<System.DateTime> Time { get; set; }
-        
+
         public string Status { get; set; }
 
 

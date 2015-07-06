@@ -152,7 +152,8 @@ namespace MezoExperts.Controllers
                     db.Users.Add(u);
                     db.SaveChanges();
                     */
-
+                    
+                    /*
                     Expert e = new Expert();
                     e.Email = model.Email;
                     e.LoginId = WebSecurity.GetUserId(model.Email);
@@ -164,7 +165,7 @@ namespace MezoExperts.Controllers
                     db.Experts.Add(e);
                     db.SaveChanges();
                     WebSecurity.Login(model.Email, model.Password);
-                    return RedirectToAction("Index", "Expert");
+                    return RedirectToAction("Index", "Expert");*/
                 }
                 catch (MembershipCreateUserException e)
                 {

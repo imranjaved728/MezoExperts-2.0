@@ -19,8 +19,8 @@ namespace MezoExperts.Models
         public Nullable<int> LoginId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public System.DateTime DOB { get; set; }
         public string Username { get; set; }
+        public System.DateTime DOB { get; set; }
         public string PicturePath { get; set; }
     }
 }

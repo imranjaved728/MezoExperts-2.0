@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9b76ba1ef15a48ed99479e778280ec05" Name="Diagram1" ZoomLevel="85">
-        <EntityTypeShape EntityType="Model.Client" PointX="0.5" PointY="0.5" Width="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="3.125" PointY="2.125" />
-        <EntityTypeShape EntityType="Model.Expert" Width="1.5" PointX="0.5" PointY="2.75" />
-        <EntityTypeShape EntityType="Model.Question" Width="1.5" PointX="5.375" PointY="1.5" />
-        <EntityTypeShape EntityType="Model.QuestionFile" Width="1.5" PointX="7.625" PointY="0.5" />
-        <EntityTypeShape EntityType="Model.Reply" Width="1.5" PointX="7.625" PointY="3.125" />
+      <Diagram DiagramId="9b76ba1ef15a48ed99479e778280ec05" Name="Diagram1" ZoomLevel="60">
+        <EntityTypeShape EntityType="Model.Client" PointX="2.625" PointY="2.875" Width="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="5" PointY="2.875" />
+        <EntityTypeShape EntityType="Model.Expert" Width="1.5" PointX="0.75" PointY="4.125" />
+        <EntityTypeShape EntityType="Model.Question" Width="1.5" PointX="7.25" PointY="0.5" />
+        <EntityTypeShape EntityType="Model.QuestionFile" Width="1.5" PointX="9.5" PointY="1.25" />
+        <EntityTypeShape EntityType="Model.Reply" Width="1.5" PointX="9.5" PointY="3.875" />
         <AssociationConnector Association="Model.FK__Question__Catego__531856C7" />
         <AssociationConnector Association="Model.FK__QuestionF__Quest__51300E55" />
         <AssociationConnector Association="Model.FK__Reply__QuestionI__3552E9B6" />
