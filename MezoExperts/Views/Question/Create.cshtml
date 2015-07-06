@@ -56,6 +56,9 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        CKEDITOR.config.extraPlugins = "base64image";
+        CKEDITOR.config.removePlugins = "image";
         CKEDITOR.replace('QuestionText');
+        
     });
 </script>
