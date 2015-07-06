@@ -184,6 +184,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\ExpertController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
@@ -816,6 +817,8 @@
     <Content Include="Views\Reply\Details.cshtml" />
     <Content Include="Views\Reply\Index.cshtml" />
     <Content Include="Views\Reply\Create.cshtml" />
+    <Content Include="Views\Client\Profile.cshtml" />
+    <Content Include="Views\Client\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
